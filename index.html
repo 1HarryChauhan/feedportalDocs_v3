@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed Formulation Portal - Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .company-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .company-info p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .main-navigation {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 5px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .nav-button.active {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h1 {
+            color: #2e7d32;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2e7d32;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .content-section h2 {
+            color: #2e7d32;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content-section h3 {
+            color: #2e7d32;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background: #c8e6c9;
+            padding: 15px;
+            border-left: 4px solid #2e7d32;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip {
+            background: #c8e6c9;
+            border: 1px solid #2e7d32;
+            border-left: 4px solid #2e7d32;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .code {
+            background: #f0f8f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            border: 1px solid #2e7d32;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .rule {
+            background: #ffe6e6;
+            border: 1px solid #ff9999;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        ul, ol {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-item {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 2px solid #2e7d32;
+        }
+
+        .tech-item h4 {
+            color: #2e7d32;
+            margin: 0 0 10px 0;
+        }
+
+        .workflow-step {
+            background: #f0f8f0;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 5px solid #2e7d32;
+        }
+
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .step-box {
+            background: #2e7d32;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            min-width: 120px;
+            margin: 5px;
+        }
+
+        .arrow {
+            color: #2e7d32;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            padding: 20px;
+        }
+
+        .toc {
+            background: #f0f8f0;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            border: 1px solid #2e7d32;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        .video-link {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-link a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2e7d32;
+            text-decoration: none;
+        }
+
+        .video-link a:hover {
+            text-decoration: underline;
+            color: #1b5e20;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-navigation {
+                padding: 15px;
+            }
+            
+            .nav-button {
+                display: block;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Feed Formulation Portal</h1>
+        <div class="company-info">
+            <h2>Gopher Industries</h2>
+            <p>Deakin University Capstone Team</p>
+        </div>
+        <p>Complete Documentation & Developer Guide</p>
+    </div>
+
+    <div class="container">
+        <div class="main-navigation">
+            <button class="nav-button active" onclick="showSection('home')">Home</button>
+            <button class="nav-button" onclick="showSection('getting-started')">Getting Started</button>
+            <button class="nav-button" onclick="showSection('common-errors')">Common Errors</button>
+            <button class="nav-button" onclick="showSection('what-is-portal')">What is Portal</button>
+            <button class="nav-button" onclick="showSection('team-goals')">Team Goals</button>
+            <button class="nav-button" onclick="showSection('tech-stack')">Tech Stack</button>
+            <button class="nav-button" onclick="showSection('workflow')">Workflow</button>
+            <button class="nav-button" onclick="showSection('troubleshooting')">Troubleshooting</button>
+            <button class="nav-button" onclick="showSection('github-workflow')">GitHub Workflow</button>
+            <button class="nav-button" onclick="showSection('testing')">Testing & Review</button>
+        </div>
+
+        <!-- HOME SECTION -->
+        <div id="home" class="content-section active">
+            <h1>Documentation Menu</h1>
+            
+            <div class="note">
+                <p><strong>Welcome to the Feed Formulation Portal Documentation!</strong> This comprehensive guide covers everything you need to know about developing, maintaining, and contributing to the Feed Formulation Portal project.</p>
+            </div>
+
+            <h2>Quick Navigation</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>New Developers</h4>
+                    <p>Start with Getting Started guide for complete setup instructions</p>
+                    <button class="nav-button" onclick="showSection('getting-started')">Get Started</button>
+                </div>
+                <div class="tech-item">
+                    <h4>Need Help?</h4>
+                    <p>Check Common Errors and Troubleshooting sections</p>
+                    <button class="nav-button" onclick="showSection('common-errors')">Common Errors</button>
+                </div>
+                <div class="tech-item">
+                    <h4>Understanding the Project</h4>
+                    <p>Learn about goals, scope, and technical architecture</p>
+                    <button class="nav-button" onclick="showSection('what-is-portal')">What is Portal</button>
+                </div>
+                <div class="tech-item">
+                    <h4>Development Process</h4>
+                    <p>Master our workflow and GitHub practices</p>
+                    <button class="nav-button" onclick="showSection('workflow')">Workflow</button>
+                </div>
+            </div>
+
+            <h2>Documentation Sections</h2>
+            <div class="workflow-step">
+                <h3>Project Overview</h3>
+                <ul>
+                    <li>What is the Feed Formulation Portal?</li>
+                    <li>Team goals and project scope</li>
+                    <li>Tech stack (frontend, backend, database)</li>
+                    <li>General development workflow and communication</li>
+                </ul>
+            </div>
+
+            <div class="workflow-step">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li>Prerequisites (accounts, tools, access requests)</li>
+                    <li>Developer checklist</li>
+                    <li>GitHub, Teams, and OnTrack overview</li>
+                    <li>Complete setup process</li>
+                </ul>
+            </div>
+
+            <div class="workflow-step">
+                <h3>Development Resources</h3>
+                <ul>
+                    <li>Common errors and troubleshooting</li>
+                    <li>GitHub workflow and best practices</li>
+                    <li>Testing and review processes</li>
+                    <li>Code documentation standards</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- GETTING STARTED SECTION -->
+        <div id="getting-started" class="content-section">
+            <h1>Getting Started with Feed Formulation Portal</h1>
+            
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#overview">Getting Started Overview</a></li>
+                    <li><a href="#prerequisites">Prerequisites</a></li>
+                    <li><a href="#developer-checklist">Developer Checklist</a></li>
+                    <li><a href="#tools-overview">Tools Overview</a></li>
+                    <li><a href="#clone-repository">1. Clone the Repository</a></li>
+                    <li><a href="#create-branch">2. Create Your Feature Branch</a></li>
+                    <li><a href="#environment-setup">3. Environment Setup</a></li>
+                    <li><a href="#database-setup">4. Database Setup</a></li>
+                    <li><a href="#install-dependencies">5. Install Dependencies</a></li>
+                    <li><a href="#start-application">6. Start the Application</a></li>
+                    <li><a href="#login-credentials">7. Login Credentials</a></li>
+                </ul>
+            </div>
+
+            <div class="note" id="overview">
+                <h3>Getting Started Overview</h3>
+                <p><strong>What You'll Learn:</strong> Once you're ready to start contributing to this project, you'll need to use tools like GitHub. Think of GitHub as a way to keep a safe copy of the entire project online. You can ask for a copy anytime, work on it, complete some extra features or fixes, and then submit your work for checking (called "merging"). This way, everyone can work together without breaking each other's code!</p>
+            </div>
+
+            <h2 id="prerequisites">Prerequisites (accounts, tools, access requests)</h2>
+            <div class="note">
+                <p><strong>What You Need Before Starting:</strong> Before you can start working on the project, you'll need access to several tools and accounts. This section covers everything you need to request or set up.</p>
+            </div>
+            <p>Before getting started, ensure you have access to:</p>
+            <ul>
+                <li><strong>GitHub Account:</strong> Create a free account at <a href="https://github.com">github.com</a> and share your username with the team leads</li>
+                <li><strong>Microsoft Teams Access:</strong> Request access to the project's Teams workspace from your instructor</li>
+                <li><strong>OnTrack Account:</strong> Your university login should provide access to OnTrack for task management</li>
+                <li><strong>Development Tools:</strong> We'll install these in the next steps (Node.js, Git, MySQL, code editor)</li>
+            </ul>
+
+            <h2 id="developer-checklist">Developer Checklist</h2>
+            <div class="note">
+                <p><strong>Your Pre-Development Checklist:</strong> Use this checklist to ensure you're ready to start development. Check off each item as you complete it.</p>
+            </div>
+            <p>Complete this checklist before starting development:</p>
+            <ul>
+                <li>□ GitHub account created and username shared with team</li>
+                <li>□ Added to GitHub repository with appropriate permissions</li>
+                <li>□ Microsoft Teams access granted and channels joined</li>
+                <li>□ OnTrack account accessible and project visible</li>
+                <li>□ Git installed on local machine</li>
+                <li>□ Node.js (version 16 or higher) installed</li>
+                <li>□ MySQL database server installed and running</li>
+                <li>□ Code editor installed (VS Code recommended)</li>
+                <li>□ Environment files (.env) downloaded from Teams</li>
+                <li>□ Repository cloned and dependencies installed</li>
+            </ul>
+
+            <h2 id="tools-overview">GitHub, Teams, and OnTrack Overview</h2>
+            <div class="note">
+                <p><strong>Understanding Our Tools:</strong> We use several tools to collaborate effectively. Here's what each one does and how they work together.</p>
+            </div>
+            <p>Our development ecosystem uses three main tools:</p>
+            
+            <h3>GitHub - Code Repository</h3>
+            <ul>
+                <li><strong>Purpose:</strong> Store and version control all project code</li>
+                <li><strong>What you'll do:</strong> Clone repository, create branches, make commits, submit pull requests</li>
+                <li><strong>Key concept:</strong> Every change is tracked and can be reviewed before merging</li>
+            </ul>
+
+            <h3>Microsoft Teams - Communication Hub</h3>
+            <ul>
+                <li><strong>Purpose:</strong> Team communication, file sharing, meetings, and task management</li>
+                <li><strong>What you'll do:</strong> Join daily standups, share updates, access project files, use integrated Planner</li>
+                <li><strong>Key concept:</strong> Central place for all project communication and resources</li>
+            </ul>
+
+            <h3>OnTrack - Academic Progress</h3>
+            <ul>
+                <li><strong>Purpose:</strong> Academic task tracking and progress reporting for university requirements</li>
+                <li><strong>What you'll do:</strong> Log progress on assigned tasks, submit deliverables, track academic milestones</li>
+                <li><strong>Key concept:</strong> Connects your development work to academic requirements</li>
+            </ul>
+
+            <h2 id="clone-repository">1. Clone the Repository</h2>
+            <div class="note">
+                <p><strong>What is Cloning?</strong> Cloning means downloading a complete copy of the project to your computer. It's like making a photocopy of a book - you get everything: all the code files, folders, and history. This way you can work on your own copy without affecting the original.</p>
+            </div>
+            <p>Start by cloning the project repository to your local machine:</p>
+            <div class="code">git clone &lt;repository-url&gt;
+cd FeedFormulationPortalV2</div>
+            
+            <div class="video-link">
+                <a href="https://github.com/Gopher-Industries/FeedFormulationPortalV2">
+                    Primary Repository
+                </a>
+            </div>
+
+            <h2 id="create-branch">2. Create Your Feature Branch</h2>
+            <div class="note">
+                <p><strong>What is a Branch?</strong> Think of a branch like creating a separate workspace for your changes. It's like making a copy of a document to edit while keeping the original safe. Everyone works on their own branch so they don't interfere with each other's work. When you're done, you can merge your changes back to the main project.</p>
+            </div>
+            <p>Before starting work, create a new branch using the following naming convention:</p>
+            <div class="code">git checkout -b username/feature-name</div>
+            <p>Example:</p>
+            <div class="code">git checkout -b kush/update-feed-api</div>
+            
+            <div class="note">
+                <p><strong>Branch Naming Convention:</strong></p>
+                <ul>
+                    <li>Use your username followed by a forward slash.</li>
+                    <li>Use hyphens to separate words in the feature name (not underscores).</li>
+                    <li>Keep feature names descriptive but concise.</li>
+                    <li>Use lowercase letters.</li>
+                    <li>Include the type of change (e.g., <code>api</code>, <code>fix</code>, <code>feat</code>, <code>docs</code>).</li>
+                    <li>Examples: <code>john/feat-add-user-auth</code>, <code>sarah/api-update-feed</code>, <code>mike/fix-db-connection</code>.</li>
+                </ul>
+            </div>
+
+            <h2 id="environment-setup">3. Environment Setup</h2>
+            <div class="note">
+                <p><strong>What are Environment Files?</strong> Environment files (.env) are like secret configuration files that contain passwords, database addresses, and other sensitive information. They're kept separate from the main code for security reasons. Think of them as a settings file that tells your application how to connect to databases and other services.</p>
+            </div>
+            
+            <p>Find env files from the project's Files tab in Microsoft Teams, then rename both files to <code>.env</code> and place them in their respective directories (<code>backend/</code> and <code>frontend/</code>).</p>
+            <p>Update the database credentials in <code>backend/.env</code>:</p>
+            <div class="code">DB_HOST=localhost
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_NAME=feed_portal</div>
+
+            <h2 id="database-setup">4. Database Setup</h2>
+            <div class="note">
+                <p><strong>What is a Database?</strong> A database is like a digital filing cabinet where all the application's information is stored - user accounts, feed recipes, ingredients, etc. MySQL is the type of database we're using. Setting it up means creating the "filing cabinet" and organizing it with the right folders (tables) to store our data properly.</p>
+            </div>
+            <p>Create a new MySQL database:</p>
+            <div class="code">CREATE DATABASE feed_portal;</div>
+            <p>Set up the tables using the SQL files in <code>backend/sql/</code>:</p>
+            <ul>
+                <li>Run <code>ingredients.sql</code> to create the ingredients table.</li>
+                <li>Run <code>feeds.sql</code> to create the feeds and association tables.</li>
+            </ul>
+            <p>Use MySQL command line or a tool like MySQL Workbench:</p>
+            <div class="code">mysql -u your_username -p feed_portal &lt; backend/sql/ingredients.sql
+mysql -u your_username -p feed_portal &lt; backend/sql/feed.sql</div>
+
+            <h2 id="install-dependencies">5. Install Dependencies</h2>
+            <div class="note">
+                <p><strong>What are Dependencies?</strong> Dependencies are like ingredients in a recipe - they're pre-built pieces of code that our application needs to work properly. Instead of writing everything from scratch, we use these ready-made tools (libraries) that other programmers have created. npm install downloads all these "ingredients" for us.</p>
+            </div>
+            <p>Install the required dependencies for both backend and frontend:</p>
+            <p><strong>Backend:</strong></p>
+            <div class="code">cd backend
+npm install</div>
+            <p><strong>Frontend:</strong></p>
+            <div class="code">cd frontend
+npm install</div>
+
+            <h2 id="start-application">6. Start the Application</h2>
+            <div class="note">
+                <p><strong>Frontend vs Backend:</strong> Think of the frontend as the "face" of the application - what users see and click on (like buttons, forms, and pages). The backend is like the "brain" - it handles data, processes requests, and talks to the database. Both need to run together for the application to work completely.</p>
+            </div>
+            <p>Start the backend and frontend development servers:</p>
+            <p><strong>Backend:</strong></p>
+            <div class="code">cd backend
+npm run dev</div>
+            <p><strong>Frontend:</strong></p>
+            <div class="code">cd frontend
+npm start</div>
+            <p>The application will be available at:</p>
+            <ul>
+                <li>Frontend: <a href="http://localhost:3000">http://localhost:3000</a></li>
+                <li>Backend API: <a href="http://localhost:5000">http://localhost:5000</a></li>
+            </ul>
+
+            <h2 id="login-credentials">7. Login Credentials</h2>
+            <p>Use the following credentials to log in to the application:</p>
+            <div class="note">
+                <p><strong>Email:</strong> testuser@feedportal.com</p>
+                <p><strong>Password:</strong> O1PsEVa3I1</p>
+            </div>
+        </div>
+
+        <!-- COMMON ERRORS SECTION -->
+        <div id="common-errors" class="content-section">
+            <h1>Common Errors and Development Tips</h1>
+
+            <div class="tip">
+                <p><strong>Essential Reading:</strong> This guide contains critical information that will save you hours of debugging and prevent common mistakes that have caused major issues in the past.</p>
+            </div>
+
+            <h2>Critical Database Rules</h2>
+
+            <div class="rule">
+                <h3>Rule #1: Master Database Control</h3>
+                <p><strong>Never let anything through unless it was checked by the one person who has understanding of the project direction.</strong></p>
+                <p>We have had massive arguments over merges that would have screwed the user table which Clerk (our entire authentication system) is hooked into. It took two trimesters to get it working right.</p>
+            </div>
+
+            <div class="warning">
+                <p><strong>Why This Matters:</strong> Database modifications can break authentication, corrupt user data, and require extensive manual repairs. Always get database changes reviewed by a lead developer before merging.</p>
+            </div>
+
+            <h2>Sprint and Task Management</h2>
+
+            <div class="tip">
+                <h3>Plan for Incomplete Work</h3>
+                <ul>
+                    <li>Leave tasks for the next sprint and trimester - it makes everything much easier</li>
+                    <li>Do not expect everyone to finish their work</li>
+                    <li>Assign work to people who can do it if it is of great importance</li>
+                    <li>Otherwise you will be doing it yourself and the other person will pass on your work</li>
+                </ul>
+            </div>
+
+            <h2>Git and Merging Best Practices</h2>
+
+            <div class="rule">
+                <h3>Never Merge Your Own Work</h3>
+                <p><strong>Do not merge your work - let a lead test it in their testing threads and let them merge.</strong></p>
+                <p>Many errors and nightmares we have had over people just merging work. Often they break things, we miss it for a few weeks, and then we have to play find the needle in the haystack and hand code a lot of the project again by hand.</p>
+            </div>
+
+            <h3>Proper Branch Management</h3>
+
+            <div class="warning">
+                <p><strong>Don't Follow School Suggestions Exactly:</strong> The school suggests making branches and updating them at the start of the sprint, then submitting them in PR when ready. Don't do it exactly like this or you will end up with your leads upset due to you being massively behind the main repo.</p>
+            </div>
+
+            <div class="tip">
+                <h3>Correct Branching Workflow</h3>
+                <ol>
+                    <li>Make the branch at the start of the sprint or task work on it</li>
+                    <li>When you have finished your work, make a new branch with <code>-rebase</code> at the end of its name</li>
+                    <li>Put all of your work into the new code base so you have all the new additions to the code base in your branch and you're up to date with the main branch's commits</li>
+                    <li>This can be done in the browser or on your machine with a text editor</li>
+                </ol>
+            </div>
+
+            <div class="code">
+                Example branch naming:
+                Original: feature/user-auth
+                Rebase branch: feature/user-auth-rebase
+            </div>
+
+            <h2>Debugging and Troubleshooting</h2>
+
+            <h3>Browser Caching Issues</h3>
+
+            <div class="warning">
+                <p><strong>Common Problem:</strong> If you have been working on your project and you update it but do not see updates, remember your browser cookies and refresh the browser so that it actually downloads the new code rather than caching old code.</p>
+            </div>
+
+            <div class="tip">
+                <h3>Clear Browser Cache Steps:</h3>
+                <ol>
+                    <li>Hard refresh: <code>Ctrl + F5</code> (Windows) or <code>Cmd + Shift + R</code> (Mac)</li>
+                    <li>Clear browser cache and cookies</li>
+                    <li>Open developer tools and disable cache while DevTools is open</li>
+                    <li>Use incognito/private browsing mode for testing</li>
+                </ol>
+            </div>
+
+            <h3>Server-Side Debugging</h3>
+
+            <div class="tip">
+                <p>When running your code, if you come to troubles, make sure you check the terminals for each of the servers. There are often many codes that will give you hints on how to debug your code errors given from the servers through their terminals.</p>
+            </div>
+
+            <h3>Console Logging for Debugging</h3>
+
+            <div class="code">
+                // Use console.log() for debugging
+                console.log('Input arguments:', arg1, arg2);
+                console.log('Variable value:', someVariable);
+                console.log('Function result:', result);
+            </div>
+
+            <h2>API Testing with Postman</h2>
+
+            <div class="tip">
+                <h3>Setting Up Postman Authentication</h3>
+                <p>When testing endpoints, use Postman. You will need to get a Clerk authentication token to do this.</p>
+            </div>
+
+            <div class="code">
+                Steps to get authentication token:
+                1. Open the project in your browser (localhost:3000)
+                2. Open the development console
+                3. Enter this into the console and run it:
+                   await window.Clerk.session.getToken()
+                4. Copy the key displayed in the output log pane
+                5. In Postman, go to Authorization tab
+                6. Select "Bearer Token" as the token type
+                7. Paste your copied token
+            </div>
+
+            <h2>Emergency Procedures</h2>
+
+            <div class="rule">
+                <h3>If You Break the Main Branch</h3>
+                <ol>
+                    <li><strong>Immediately notify team leads</strong> via Teams</li>
+                    <li>Do not attempt to fix it yourself</li>
+                    <li>Provide details about what changes were made</li>
+                    <li>Be prepared to help with rollback procedures</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- WHAT IS PORTAL SECTION -->
+        <div id="what-is-portal" class="content-section">
+            <h1>What is the Feed Formulation Portal?</h1>
+            
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#overview">Project Overview</a></li>
+                    <li><a href="#features">Key Features</a></li>
+                    <li><a href="#architecture">System Architecture</a></li>
+                    <li><a href="#use-cases">Use Cases</a></li>
+                </ul>
+            </div>
+
+            <div class="note" id="overview">
+                <h3>Project Overview</h3>
+                <p>The Feed Formulation Portal is a web-based application designed to assist nutritionists, farmers, and feed manufacturers in creating optimized animal feed formulations. Developed as a Deakin University Capstone project by Gopher Industries, it leverages modern web technologies to provide an intuitive interface for managing ingredients, calculating nutritional requirements, and generating compliant feed recipes.</p>
+                <p>The portal addresses key challenges in the animal nutrition industry, such as ensuring regulatory compliance, minimizing costs, and maximizing nutritional balance. It supports various livestock types (e.g., poultry, cattle, swine) and integrates real-time calculations for nutrient optimization.</p>
+            </div>
+
+            <h2 id="features">Key Features</h2>
+            <div class="workflow-step">
+                <ul>
+                    <li><strong>Ingredient Management:</strong> Database of ingredients with nutritional profiles, costs, and availability tracking.</li>
+                    <li><strong>Formulation Engine:</strong> Linear programming-based optimizer for least-cost formulations meeting nutritional constraints.</li>
+                    <li><strong>User Authentication:</strong> Secure login via Clerk, with role-based access (admin, user, guest).</li>
+                    <li><strong>Recipe Generation:</strong> Export formulations as PDFs or CSV files with compliance reports.</li>
+                    <li><strong>Analytics Dashboard:</strong> Visualize formulation history, cost trends, and performance metrics.</li>
+                </ul>
+            </div>
+
+            <h2 id="architecture">System Architecture</h2>
+            <div class="process-flow">
+                <div class="step-box">Frontend (React)</div>
+                <span class="arrow">→</span>
+                <div class="step-box">Backend API (Node.js/Express)</div>
+                <span class="arrow">→</span>
+                <div class="step-box">Database (MySQL)</div>
+                <span class="arrow">→</span>
+                <div class="step-box">Optimization Solver (PuLP-like integration)</div>
+            </div>
+            <p>The architecture follows a client-server model with RESTful APIs for communication. The frontend handles UI/UX, while the backend manages business logic and data persistence.</p>
+
+            <h2 id="use-cases">Use Cases</h2>
+            <div class="tip">
+                <ul>
+                    <li>Farmers formulating daily rations for herds.</li>
+                    <li>Nutritionists testing hypothetical scenarios for research.</li>
+                    <li>Manufacturers scaling production while adhering to regulations like NRC standards.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TEAM GOALS SECTION -->
+        <div id="team-goals" class="content-section">
+            <h1>Team Goals and Project Scope</h1>
+            
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#objectives">Primary Objectives</a></li>
+                    <li><a href="#scope">Project Scope</a></li>
+                    <li><a href="#milestones">Key Milestones</a></li>
+                    <li><a href="#success-metrics">Success Metrics</a></li>
+                </ul>
+            </div>
+
+            <div class="note" id="objectives">
+                <h3>Primary Objectives</h3>
+                <p>As the Gopher Industries Capstone Team, our goals are to deliver a robust, user-friendly tool that streamlines feed formulation while demonstrating advanced software engineering practices. We aim to:</p>
+                <ul>
+                    <li>Build an MVP with core formulation capabilities by Trimester 1 end.</li>
+                    <li>Integrate optimization algorithms for accurate, efficient calculations.</li>
+                    <li>Ensure scalability for 100+ concurrent users.</li>
+                    <li>Foster team collaboration through agile methodologies.</li>
+                </ul>
+            </div>
+
+            <h2 id="scope">Project Scope</h2>
+            <div class="warning">
+                <p><strong>In Scope:</strong> Core features (ingredient DB, formulation UI, API endpoints, basic auth). <strong>Out of Scope:</strong> Mobile app, AI-driven predictions, third-party integrations (e.g., ERP systems).</p>
+            </div>
+
+            <h2 id="milestones">Key Milestones</h2>
+            <div class="workflow-step">
+                <ol>
+                    <!-- <li><strong>Month 1:</strong> Setup and prototyping (database schema, wireframes).</li>
+                    <li><strong>Month 2:</strong> Backend development and API testing.</li>
+                    <li><strong>Month 3:</strong> Frontend integration and user testing.</li>
+                    <li><strong>Month 4:</strong> Optimization, deployment, and documentation.</li> -->
+                </ol>
+            </div>
+
+            <h2 id="success-metrics">Success Metrics</h2>
+            <div class="tip">
+                <ul>
+                    <li>95% test coverage for critical paths.</li>
+                    <li>User satisfaction score > 4/5 in beta testing.</li>
+                    <li>Formulation accuracy within 5% of industry standards.</li>
+                    <li>Project delivered on time with full team participation.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TECH STACK SECTION -->
+        <div id="tech-stack" class="content-section">
+            <h1>Technology Stack</h1>
+            
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#frontend">Frontend</a></li>
+                    <li><a href="#backend">Backend</a></li>
+                    <li><a href="#database">Database</a></li>
+                    <li><a href="#tools">Development Tools</a></li>
+                </ul>
+            </div>
+
+            <h2 id="frontend">Frontend</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>React.js</h4>
+                    <p>UI library for dynamic, component-based interfaces.</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Material-UI</h4>
+                    <p>Component library for consistent styling.</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Axios</h4>
+                    <p>HTTP client for API requests.</p>
+                </div>
+            </div>
+
+            <h2 id="backend">Backend</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>Node.js / Express</h4>
+                    <p>Server runtime and web framework.</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Clerk</h4>
+                    <p>Authentication and user management.</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Sequelize</h4>
+                    <p>ORM for MySQL interactions.</p>
+                </div>
+            </div>
+
+            <h2 id="database">Database</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>MySQL</h4>
+                    <p>Relational database for structured data.</p>
+                </div>
+            </div>
+
+            <h2 id="tools">Development Tools</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>Git / GitHub</h4>
+                    <p>Version control and collaboration.</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Postman</h4>
+                    <p>API testing.</p>
+                </div>
+                <div class="tech-item">
+                    <h4>VS Code</h4>
+                    <p>Code editor with extensions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKFLOW SECTION -->
+        <div id="workflow" class="content-section">
+            <h1>Development Workflow</h1>
+            
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#daily">Weekly Workflow</a></li>
+                    <li><a href="#sprint">Sprint Process</a></li>
+                    <li><a href="#communication">Communication Protocols</a></li>
+                </ul>
+            </div>
+
+            <h2 id="daily">Weekly Workflow</h2>
+            <div class="process-flow">
+                <div class="step-box">Standup (Monday)</div>
+                <span class="arrow">→</span>
+                <div class="step-box">Task Assignment</div>
+                <span class="arrow">→</span>
+                <div class="step-box">Development</div>
+                <span class="arrow">→</span>
+                <div class="step-box">End-of-Week Update(Friday)</div>
+            </div>
+
+            <h2 id="sprint">Sprint Process</h2>
+            <div class="tip">
+                <ol>
+                    <li><strong>Planning:</strong> Review backlog in Teams/OnTrack.</li>
+                    <li><strong>Execution:</strong> Branching and daily commits.</li>
+                    <li><strong>Review:</strong> PRs with lead approval.</li>
+                    <li><strong>Retrospective:</strong> Weekly team meeting.</li>
+                </ol>
+            </div>
+
+            <h2 id="communication">Communication Protocols</h2>
+            <div class="note">
+                <ul>
+                    <li>Use Teams for async updates and file sharing.</li>
+                    <li>Daily standups via video call.</li>
+                    <li>Escalate blockers immediately to leads.</li>
+                    <li>Document decisions in GitHub issues.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TROUBLESHOOTING SECTION -->
+        <div id="troubleshooting" class="content-section">
+            <h1>Troubleshooting Guide</h1>
+            
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#network">Network & Connectivity Issues</a></li>
+                    <li><a href="#auth">Authentication Problems</a></li>
+                    <li><a href="#db">Database Errors</a></li>
+                    <li><a href="#deploy">Deployment Troubleshooting</a></li>
+                </ul>
+            </div>
+
+            <h2 id="network">Network & Connectivity Issues</h2>
+            <div class="warning">
+                <p><strong>Symptom:</strong> API calls failing with CORS errors.</p>
+                <p><strong>Solution:</strong> Ensure backend runs on port 5000 and frontend on 3000. Add CORS middleware in Express if needed.</p>
+            </div>
+
+            <h2 id="auth">Authentication Problems</h2>
+            <div class="tip">
+                <p><strong>Symptom:</strong> "Invalid token" errors.</p>
+                <p><strong>Solution:</strong> Regenerate Clerk token via browser console. Verify .env CLERK keys match dashboard.</p>
+            </div>
+
+            <h2 id="db">Database Errors</h2>
+            <div class="rule">
+                <p><strong>Symptom:</strong> Connection refused.</p>
+                <p><strong>Solution:</strong> Check MySQL service status. Verify DB_HOST, USER, PASS in .env. Restart server if schema mismatch.</p>
+            </div>
+
+            <h2 id="deploy">Deployment Troubleshooting</h2>
+            <div class="note">
+                <ul>
+                    <li>Environment variables not loading: Use process.env checks with fallbacks.</li>
+                    <li>Build failures: Run npm audit fix for vulnerabilities.</li>
+                    <li>Performance issues: Profile with Node clinic or React DevTools.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- GITHUB WORKFLOW SECTION -->
+        <div id="github-workflow" class="content-section">
+            <h1>GitHub Workflow and Best Practices</h1>
+            
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#branching">Branching Strategy</a></li>
+                    <li><a href="#commits">Commit Conventions</a></li>
+                    <li><a href="#prs">Pull Requests</a></li>
+                    <li><a href="#reviews">Code Reviews</a></li>
+                </ul>
+            </div>
+
+            <h2 id="branching">Branching Strategy</h2>
+            <div class="tip">
+                <ul>
+                    <li>Main: Stable production branch.</li>
+                    <li>Develop: Integration branch for features.</li>
+                    <li>Feature branches: username/feat-description.</li>
+                    <li>Rebase before PR: git rebase develop.</li>
+                </ul>
+            </div>
+
+            <h2 id="commits">Commit Conventions</h2>
+            <div class="code">
+                feat: add user login<br>
+                fix: resolve db query bug<br>
+                docs: update readme
+            </div>
+
+            <h2 id="prs">Pull Requests</h2>
+            <div class="note">
+                <ol>
+                    <li>Create PR from feature to develop.</li>
+                    <li>Include description, screenshots, tests.</li>
+                    <li>Assign reviewer (lead).</li>
+                    <li>Merge only after approval.</li>
+                </ol>
+            </div>
+
+            <h2 id="reviews">Code Reviews</h2>
+            <div class="warning">
+                <p>Focus on: Security, performance, readability. Use checklists in PR templates.</p>
+            </div>
+        </div>
+
+        <!-- TESTING & REVIEW SECTION -->
+        <div id="testing" class="content-section">
+            <h1>Testing & Review Processes</h1>
+            
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#unit">Unit Testing</a></li>
+                    <li><a href="#integration">Integration Testing</a></li>
+                    <li><a href="#e2e">End-to-End Testing</a></li>
+                    <li><a href="#review">Review Guidelines</a></li>
+                </ul>
+            </div>
+
+            <h2 id="unit">Unit Testing</h2>
+            <div class="tip">
+                <p>Use Jest for backend/frontend. Aim for 80% coverage.</p>
+                <div class="code">npm test</div>
+            </div>
+
+            <h2 id="integration">Integration Testing</h2>
+            <div class="note">
+                <p>Test API endpoints with Supertest. Mock database connections.</p>
+            </div>
+
+            <h2 id="e2e">End-to-End Testing</h2>
+            <div class="workflow-step">
+                <p>Cypress for UI flows. Run before PRs.</p>
+                <div class="code">npx cypress run</div>
+            </div>
+
+            <h2 id="review">Review Guidelines</h2>
+            <div class="rule">
+                <ul>
+                    <li>Run all tests locally.</li>
+                    <li>Check for linting errors (ESLint/Prettier).</li>
+                    <li>Document new features.</li>
+                    <li>Update CHANGELOG.md.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Gopher Industries. All rights reserved. | Deakin University Capstone Project</p>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            var sections = document.querySelectorAll('.content-section');
+            sections.forEach(function(section) {
+                section.classList.remove('active');
+            });
+            // Remove active from all buttons
+            var buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(function(button) {
+                button.classList.remove('active');
+            });
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            // Add active to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
